@@ -105,19 +105,19 @@ def book_create(request):
         'results' : books
     }
     return render(request, 'booksearch.html', context)"""
-def book_search(request):
+"""def book_search(request):
     form = SearchForm()
     books = Book.objects.all()
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            search = form.save()
+            form.save()
             return redirect('book-list')
     context = {
         'form' : form,
-        'results' : books
+        'search' : search
     }
-    return render(request, 'booksearch.html', context)
+    return render(request, 'booksearch.html', context)"""
 
 def admin_profile(request):
     if not request.user.is_staff:

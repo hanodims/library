@@ -33,7 +33,7 @@ class BookForm(forms.ModelForm):
 class SearchForm(forms.ModelForm):
     class Meta:
         model = Search
-        exclude = ['books']
+        fields = '__all__'
 
         
 

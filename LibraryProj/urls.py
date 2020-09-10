@@ -23,7 +23,7 @@ urlpatterns = [
     path('no/',views.noo ,name='No'),
 
     path('list/', views.book_list, name ="book-list"),
-    path('search/', views.book_search, name ="book-search"),
+    #path('search/', views.book_search, name ="book-search"),
     path('bookcreate/', views.book_create, name ="book-create"),
     path('<int:book_id>/detail/',views.book_detail ,name='book-detail'),
     path('<int:book_id>/borrow/',views.book_borrow ,name='book-borrow'),
