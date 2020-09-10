@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+
+    <form action="{% url 'book-search' %}" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Search">
+    </form>
+
+   
+    {% for result in results %}
+       
+        {% if result  %}
+     
+            {{result.books}}
+        
+        {% endif %}
+    
+    {% endfor %}
+
+{% endblock content %}

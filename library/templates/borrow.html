@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Borrow Book{% endblock title %}
+
+{% block content %}
+
+    {% if request.user.is_staff %}
+        <form action="{% url 'book-borrow' book.id %}" method="POST">
+
+        <div class="jumbotron">
+            <h2 class="display-4">Borrow!</h2>
+            <p class="lead">      
+                {% csrf_token %}
+                {{form|crispy}}</p>
+            <hr class="my-4">
+            <input class="btn btn-primary btn-lg" type="submit" value="Borrow">
+        
+            </div>
+   
+        </form>
+    {% endif %}
+
+{% endblock content %}
+

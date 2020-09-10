@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile Detail{% endblock title %}
+
+{% block content %}
+
+
+
+{% if request.user.is_staff %}
+    <br> <br><br>
+    
+    {% if member.member %} 
+        Activate membership:
+        {{member.name}} is a member.
+    {% else %}
+        something Wrong!!!
+    {% endif %}
+
+{% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<br>
+    {% if request.user.is_staff %}
+    <h2>Hello {{request.user.username}}</h2>
+        <br>
+        {% for user in users %}
+            {% if not user.is_staff %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{user.username}}</h5>
+                  <p><a href="{% url 'profile-detail' user.id %}">View</a></p>
+                </div>
+              </div>
+                <br>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
+    {% if request.user.is_authenticated and not request.user.is_staff  %}
+    <h2>Hello {{request.user.username}}</h2>
+    <br> 
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Name: {{user.username}}</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class= "col-12"><hr><br>Books History:<br> <hr><br> </div> 
+          {% for log in logs %}
+      
+          
+          <div class="col-6 col-sm-4">
+      
+              <div class="card mb-3" style="width: 18rem;">
+              {% if log.book %}
+                  <div class="card-body">
+                  <h5 class="card-title">Name: {{log.book}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">By: {{log.person}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Start: {{log.start_date}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">End: {{log.end_date}}</h6>
+              {% else %}
+                  <h6 class="card-subtitle mb-2 text-muted">Nothing!</h6>
+                  {% endif %}
+                  </div>
+              </div>
+      
+          </div>
+          {% endfor %}
+      </div>  
+   
+
+
+
+{% endif %}
+
+
+{% endblock content %}
+

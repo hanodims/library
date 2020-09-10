@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+<br> <br> <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{book.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">By: {{book.author}}</h6>
+        <p class="card-text">{{book.description|truncatechars:25}}.</p>
+        <h6 class="card-subtitle mb-2 text-muted">Gener: {{book.gener}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">ISPN: {{book.ISPN}}</h6>
+        
+        {% if book.available == False %}
+            <h6 class="card-subtitle mb-2 text-muted">Available : No</h6>
+        {% else %}
+            <h6 class="card-subtitle mb-2 text-muted">Available : Yes</h6>
+            {% endif %}
+
+        {% if request.user.is_staff %}
+        <a href="{% url 'book-borrow' book.id %}" class="card-link">Borrow</a>
+        <a href="{% url 'book-return' book.id %}" class="card-link">Return</a>
+        <a href="{% url 'book-logs' book.id %}" class="card-link">Logs</a>
+        {% endif %}
+        </div>
+    </div>
+    
+    
+
+{% endblock content %}
+

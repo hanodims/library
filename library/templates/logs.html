@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Logs{% endblock title %}
+
+{% block content %}
+{% if request.user.is_staff %}
+<div class="row mt-5">
+
+    {% for log in logs %}
+
+    
+    <div class="col-6 col-sm-4">
+
+        <div class="card" style="width: 18rem;">
+        {% if log.book %}
+            <div class="card-body">
+            <h5 class="card-title">Name: {{log.book}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">By: {{log.person}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Start: {{log.start_date}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">End: {{log.end_date}}</h6>
+        {% else %}
+            <h6 class="card-subtitle mb-2 text-muted">Nothing!</h6>
+            {% endif %}
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>  
+{% endif %}
+{% endblock content %}
+
+
+

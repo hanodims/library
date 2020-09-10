@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Book{% endblock title %}
+
+{% block content %}
+
+    {% if request.user.is_staff %}
+
+        <form action="{% url 'book-create' %}" method="POST">
+            <div class="jumbotron">
+                <h2 class="display-4">Add Book!</h2>
+                <p class="lead">      
+                    {% csrf_token %}
+                    {{form|crispy}}</p>
+                <hr class="my-4">
+                <input class="btn btn-primary btn-lg" type="submit" value="Create">
+            
+                </div>
+        </form>
+    {% endif %}
+
+{% endblock content %}
+
+
