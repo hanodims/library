@@ -3,7 +3,6 @@ from .models import Person,Book,Borrow,Search
 from django.contrib.auth.models import User
 
 
-
 class SignupForm(forms.ModelForm):
     class Meta:
         model = User
@@ -30,11 +29,11 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = '__all__'
 
+
 class SearchForm(forms.ModelForm):
     class Meta:
         model = Search
         fields = '__all__'
-
         
 
 class BorrowForm(forms.ModelForm):

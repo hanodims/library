@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Person,Book,Borrow,User,Search
-from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
-# Create your views here.
+from .models import Person,Book,Borrow,User,Search
+from .forms import (
+    SignupForm, SigninForm, MemberForm, BookForm, SearchForm,
+    BorrowForm,
+)
+
 
 def noo(request):
     context = {
@@ -189,10 +192,9 @@ def book_borrow(request,book_id):
     if request.method == "POST":
         form = BorrowForm(request.POST)
         if form.is_valid():
-            borrow = form.save(commit=False)
+            form.save()
             book_obj.available = False
             book_obj.save()
-            borrow.save()
             messages.success(request, "Successfull!")
             return redirect('book-list')
     context = {
